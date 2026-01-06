@@ -7,6 +7,7 @@
   <title>Alobin Resume</title>
   <link rel="icon" type="image/png" href="Images/darkmode_normal.png">
   <link rel="stylesheet" href="css/styles.css?v=10">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <style>
     :root {
       --ink: #1f2937;
@@ -841,7 +842,48 @@
 
     envelope.addEventListener('click', openEnvelope);
     envelopeBtn.addEventListener('click', openEnvelope);
+
+    // Display loaded resources
+    const resourcesFooter = document.createElement('div');
+    resourcesFooter.style.cssText = 'background: rgba(0,0,0,0.9); color: #fff; padding: 20px; margin-top: 40px; font-size: 13px; border-radius: 5px; font-family: monospace; border-top: 2px solid #333;';
+    
+    let cssFiles = Array.from(document.styleSheets).map(sheet => {
+      try {
+        return sheet.href || 'inline style';
+      } catch(e) {
+        return 'inline style';
+      }
+    }).filter(f => f.includes('styles') || f === 'inline style');
+    
+    let jsFiles = Array.from(document.scripts).map(script => script.src).filter(src => src);
+    
+    let html = '<strong>📦 Resources Loaded:</strong><br><br>';
+    html += '<strong>CSS Files:</strong><br>';
+    cssFiles.forEach(css => {
+      html += '✓ ' + (css === 'inline style' ? css : css.split('/').pop()) + '<br>';
+    });
+    html += '<br><strong>JavaScript Files:</strong><br>';
+    jsFiles.forEach(js => {
+      html += '✓ ' + js.split('/').pop() + '<br>';
+    });
+    
+    resourcesFooter.innerHTML = html;
+    document.body.appendChild(resourcesFooter);
+
+    // Vue Example
+    const { createApp } = Vue;
+    createApp({
+      data() {
+        return {
+          message: "Hapey Nyo Yer!"
+        }
+      }
+    }).mount('#vue-app');
   </script>
+
+  <div id="vue-app" style="text-align: center; margin-top: 40px; padding: 20px; background: #e8f5e9; border-radius: 8px; font-weight: bold; font-size: 24px; color: #2e7d32;">
+    {{ message }}
+  </div>
 </body>
 
 </html>
