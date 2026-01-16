@@ -1,38 +1,43 @@
-# firstsfc
+# Vue Resume App
 
-This template should help get you started developing with Vue 3 in Vite.
+This Vue.js application displays Vince's resume website.
 
-## Recommended IDE Setup
+## 🚀 Development
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
+```bash
+# Install dependencies
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+# Run dev server
 npm run dev
-```
 
-### Compile and Minify for Production
-
-```sh
+# Build for production
 npm run build
+
+# Preview production build
+npm run preview
 ```
+
+## 📦 What's Inside
+
+- **App.vue** - Main application wrapper
+- **main.js** - Application entry point
+- **components/ResumeWebsite.vue** - Component that displays the resume via iframe
+- **public/website_resume/** - Resume website files (HTML, CSS, JS, images)
+
+## 🌐 Deployment
+
+This app is configured for Vercel:
+
+1. The build command is: `npm run build`
+2. The output directory is: `dist`
+3. Vercel will automatically detect these settings
+
+## 📝 Notes
+
+- The resume is loaded from `/website_resume/html/index.html`
+- All resume assets are in the `public` folder and will be copied to `dist` during build
+- The iframe displays the resume in full-screen mode
+
+---
+Built with Vue 3 + Vite
