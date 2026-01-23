@@ -1,8 +1,21 @@
 <script setup>
-// The user wants to see their resume, so we strictly render the ResumeWebsite component.
-// Previous Supabase logic for 'instruments' is removed to focus on the request.
+import { ref, onMounted } from 'vue'
+import { supabase } from './lib/supabaseClient'
+
+const instruments = ref([])
+
+async function getInstruments() {
+  const { data } = await supabase.from('instruments').select()
+  instruments.value = data
+}
+
+onMounted(() => {
+   getInstruments()
+})
 </script>
 
 <template>
-  <resume-website />
+  <ul>
+    <li v-for="instrument in instruments" :key="instrument.id">{{ instrument.name }}</li>
+  </ul>
 </template>
