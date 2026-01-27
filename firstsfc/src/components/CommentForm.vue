@@ -66,19 +66,33 @@ async function submitComment() {
 
 <style scoped>
 form {
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   padding: 15px;
   margin-bottom: 20px;
   max-width: 400px;
+  background: white;
+}
+
+p {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+label {
+  font-weight: bold;
+  font-size: 14px;
+  color: black;
 }
 
 input, textarea {
   width: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   padding: 5px;
   margin: 5px 0;
   box-sizing: border-box;
   resize: none;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
 }
 
 textarea {
@@ -87,19 +101,21 @@ textarea {
 }
 
 button {
-  background: #eee;
-  border: 1px solid #ccc;
-  padding: 8px 12px;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
   cursor: pointer;
+  font-size: 14px;
 }
 
 button:hover {
-  background: #ddd;
+  background: #e8e8e8;
 }
 
 button:disabled {
-  background: #f5f5f5;
+  background: #f8f8f8;
   cursor: not-allowed;
+  color: #999;
 }
 </style>
 

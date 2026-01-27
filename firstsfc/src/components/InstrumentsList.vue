@@ -19,3 +19,17 @@ onMounted(() => {
   getInstruments()
 })
 </script>
+
+<style scoped>
+ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  font-size: 14px;
+  line-height: 1.4;
+  padding-left: 0;
+}
+
+li {
+  margin-bottom: 2px;
+}
+</style>

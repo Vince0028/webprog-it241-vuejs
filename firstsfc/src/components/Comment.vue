@@ -28,9 +28,20 @@ function formatDate(dateString) {
 <style scoped>
 div {
   border: 1px solid #ddd;
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 10px;
   max-width: 500px;
+  background: white;
+  font-size: 14px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+p {
+  margin: 8px 0 0 0;
+  line-height: 1.4;
 }
 </style>
 

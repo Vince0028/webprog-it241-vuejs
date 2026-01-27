@@ -20,15 +20,13 @@ export default {
 <style scoped>
 .resume-container {
   width: 100%;
-  height: 100vh;
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 
 .resume-iframe {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   border: none;
   display: block;
 }
