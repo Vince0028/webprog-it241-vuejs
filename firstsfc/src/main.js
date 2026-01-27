@@ -2,7 +2,15 @@ import { createApp } from 'vue'
 
 import App from './App.vue'
 import ResumeWebsite from './components/ResumeWebsite.vue'
+import InstrumentsList from './components/InstrumentsList.vue'
+import CommentsSection from './components/CommentsSection.vue'
+import CommentForm from './components/CommentForm.vue'
+import Comment from './components/Comment.vue'
 
 const app = createApp(App)
 app.component('resume-website', ResumeWebsite)
+app.component('InstrumentsList', InstrumentsList)
+app.component('CommentsSection', CommentsSection)
+app.component('CommentForm', CommentForm)
+app.component('Comment', Comment)
 app.mount('#app')
