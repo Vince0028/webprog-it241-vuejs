@@ -29,8 +29,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-
-const emit = defineEmits(['comment-added'])
+import { supabase } from '../lib/supabaseClient'
 
 const name = ref('')
 const comment = ref('')
@@ -47,20 +46,25 @@ async function submitComment() {
   isSubmitting.value = true
   error.value = ''
   
-  try {
-    emit('comment-added', {
-      name: name.value.trim(),
-      comment: comment.value.trim()
-    })
-    
-    // Clear form after successful submission
+  const { error: insertError } = await supabase
+    .from('comments')
+    .insert([
+      {
+        name: name.value.trim(),
+        comment: comment.value.trim()
+      }
+    ])
+  
+  if (insertError) {
+    error.value = 'Failed to add comment: ' + insertError.message
+  } else {
     name.value = ''
     comment.value = ''
-  } catch (err) {
-    error.value = 'Failed to post comment. Please try again.'
-  } finally {
-    isSubmitting.value = false
+    // Reload page to show new comment
+    window.location.reload()
   }
+  
+  isSubmitting.value = false
 }
 </script>
 

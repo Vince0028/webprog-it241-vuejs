@@ -1,17 +1,33 @@
 <template>
   <div>
-    <strong>{{ comment.name }}</strong> - {{ formatDate(comment.created_at) }}
-    <p>{{ comment.comment }}</p>
+    <h2>Comments</h2>
+    <div v-if="loading">Loading comments...</div>
+    <div v-else-if="comments.length === 0">No comments yet. Be the first to comment!</div>
+    <div v-else>
+      <div v-for="comment in comments" :key="comment.id" class="comment-item">
+        <strong>{{ comment.name }}</strong> - {{ formatDate(comment.created_at) }}
+        <p>{{ comment.comment }}</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-defineProps({
-  comment: {
-    type: Object,
-    required: true
-  }
-})
+import { ref, onMounted } from 'vue'
+import { supabase } from '../lib/supabaseClient'
+
+const comments = ref([])
+const loading = ref(true)
+
+async function getComments() {
+  loading.value = true
+  const { data } = await supabase
+    .from('comments')
+    .select('*')
+    .order('created_at', { ascending: false })
+  comments.value = data || []
+  loading.value = false
+}
 
 function formatDate(dateString) {
   const date = new Date(dateString)
@@ -23,10 +39,17 @@ function formatDate(dateString) {
     minute: '2-digit'
   })
 }
+
+// Expose refresh function for CommentForm to call
+defineExpose({ getComments })
+
+onMounted(() => {
+  getComments()
+})
 </script>
 
 <style scoped>
-div {
+.comment-item {
   border: 1px solid #ddd;
   padding: 12px;
   margin-bottom: 10px;
